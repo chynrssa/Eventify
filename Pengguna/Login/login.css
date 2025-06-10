@@ -1,0 +1,45 @@
+
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .auth-container {
+            min-height: 100vh;
+        }
+        .event-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://readdy.ai/api/search-image?query=Concert%2520scene%2520with%2520large%2520crowd%2520at%2520night%2C%2520colorful%2520stage%2520lights%2C%2520purple%2520and%2520blue%2520lighting%2C%2520people%2520holding%2520phones%2520with%2520flashlights%2C%2520energetic%2520atmosphere%2C%2520music%2520festival%2520vibes%2C%2520professional%2520photography%2C%2520high%2520quality&width=800&height=1200&seq=concert123&orientation=portrait');
+            background-size: cover;
+            background-position: center;
+        }
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #C930C1;
+            box-shadow: 0 0 0 3px rgba(201, 48, 193, 0.2);
+        }
+        .social-btn {
+            transition: all 0.3s ease;
+        }
+        .social-btn:hover {
+            background-color: #f3f4f6;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #6b7280;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .divider::before {
+            margin-right: 1rem;
+        }
+        .divider::after {
+            margin-left: 1rem;
+        }
+    
