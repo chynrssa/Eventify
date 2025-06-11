@@ -22,7 +22,7 @@
 <a href="#" class="text-2xl font-['Pacifico'] text-white">Eventify</a>
 <div class="hidden md:flex ml-10 space-x-6">
 <a href="index.html" class="font-medium hover:text-gray-200 transition">Beranda</a>
-<a href="events.html" class="font-medium hover:text-gray-200 transition">Events</a>
+<a href="../Pengguna/events/events.php" class="font-medium hover:text-gray-200 transition">Events</a>
 <a href="#" class="font-medium hover:text-gray-200 transition">Tiket Saya</a>
 <a href="#" class="font-medium hover:text-gray-200 transition">Tentang Kami</a>
 </div>
@@ -47,7 +47,7 @@
 <div id="mobile-menu" class="md:hidden hidden bg-white text-gray-800 shadow-lg absolute w-full">
 <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
 <a href="index.html" class="font-medium py-2 hover:text-primary transition">Beranda</a>
-<a href="events.html" class="font-medium py-2 hover:text-primary transition">Events</a>
+<a href="../Pengguna/events/events.php" class="font-medium py-2 hover:text-primary transition">Events</a>
 <a href="#" class="font-medium py-2 hover:text-primary transition">Tiket Saya</a>
 <a href="#" class="font-medium py-2 hover:text-primary transition">Tentang Kami</a>
 <div class="relative my-2">

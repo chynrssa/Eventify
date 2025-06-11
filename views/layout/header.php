@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventify</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .logo {
+      font-family: 'Pacifico', cursive;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #6200EA, #FF1744);
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed w-full z-50">
+    <nav class="gradient-bg text-white shadow-lg">
+      <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <!-- Logo + Menu -->
+        <div class="flex items-center">
+          <a href="#" class="text-2xl logo text-white">Eventify</a>
+          <div class="hidden md:flex ml-10 space-x-6">
+            <a href="#" class="font-medium hover:text-gray-200 transition">Beranda</a>
+            <a href="#" class="font-medium hover:text-gray-200 transition">Events</a>
+            <a href="#" class="font-medium hover:text-gray-200 transition">Tiket Saya</a>
+            <a href="#" class="font-medium hover:text-gray-200 transition">Tentang Kami</a>
+          </div>
+        </div>
+
+        <!-- Search + Buttons -->
+        <div class="hidden md:flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" placeholder="Cari event..." class="py-2 pl-4 pr-10 rounded-full text-gray-800 w-64 focus:outline-none focus:ring-2 focus:ring-white" />
+            <div class="absolute right-3 top-2.5 text-gray-500">
+              <i class="ri-search-line text-lg"></i>
+            </div>
+          </div>
+          <button class="bg-white text-purple-700 font-bold py-2 px-6 rounded-full hover:bg-gray-100 transition">Masuk</button>
+          <button class="bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition">Daftar</button>
+        </div>
+
+        <!-- Mobile menu toggle -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white text-2xl">
+            <i class="ri-menu-line"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+</body>
+</html>
