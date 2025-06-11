@@ -516,189 +516,61 @@
       </div>
     </section>
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <a
-              href="#"
-              class="text-2xl font-['Pacifico'] text-white mb-4 inline-block"
-              >Eventify</a
-            >
-            <p class="text-gray-400 mb-4">
-              Platform pemesanan tiket event terpercaya di Indonesia. Temukan
-              dan beli tiket event dengan mudah dan aman.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition"
-              >
-                <div class="w-4 h-4 flex items-center justify-center">
-                  <i class="ri-facebook-fill"></i>
-                </div>
-              </a>
-              <a
-                href="#"
-                class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition"
-              >
-                <div class="w-4 h-4 flex items-center justify-center">
-                  <i class="ri-twitter-x-fill"></i>
-                </div>
-              </a>
-              <a
-                href="#"
-                class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition"
-              >
-                <div class="w-4 h-4 flex items-center justify-center">
-                  <i class="ri-instagram-fill"></i>
-                </div>
-              </a>
-              <a
-                href="#"
-                class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition"
-              >
-                <div class="w-4 h-4 flex items-center justify-center">
-                  <i class="ri-linkedin-fill"></i>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Link Cepat</h4>
-            <ul class="space-y-2">
-              <li>
-                <a href="../../body/index.php" class="text-gray-400 hover:text-white transition"
-                  >Beranda</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Event</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Tiket Saya</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Tentang Kami</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Bantuan</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Kontak</h4>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <div
-                  class="w-5 h-5 flex items-center justify-center mr-2 mt-0.5"
-                >
-                  <i class="ri-map-pin-line"></i>
-                </div>
-                <span class="text-gray-400"
-                  >Jl. Jendral Sudirman No.123, Jakarta Pusat, Indonesia</span
-                >
-              </li>
-              <li class="flex items-center">
-                <div class="w-5 h-5 flex items-center justify-center mr-2">
-                  <i class="ri-phone-line"></i>
-                </div>
-                <span class="text-gray-400">+62 21 1234 5678</span>
-              </li>
-              <li class="flex items-center">
-                <div class="w-5 h-5 flex items-center justify-center mr-2">
-                  <i class="ri-mail-line"></i>
-                </div>
-                <span class="text-gray-400">info@eventify.id</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Metode Pembayaran</h4>
-            <div class="grid grid-cols-3 gap-3">
-              <div
-                class="bg-white rounded p-2 flex items-center justify-center"
-              >
-                <div
-                  class="w-6 h-6 flex items-center justify-center text-gray-700"
-                >
-                  <i class="ri-visa-fill ri-lg"></i>
-                </div>
-              </div>
-              <div
-                class="bg-white rounded p-2 flex items-center justify-center"
-              >
-                <div
-                  class="w-6 h-6 flex items-center justify-center text-gray-700"
-                >
-                  <i class="ri-mastercard-fill ri-lg"></i>
-                </div>
-              </div>
-              <div
-                class="bg-white rounded p-2 flex items-center justify-center"
-              >
-                <div
-                  class="w-6 h-6 flex items-center justify-center text-gray-700"
-                >
-                  <i class="ri-paypal-fill ri-lg"></i>
-                </div>
-              </div>
-              <div
-                class="bg-white rounded p-2 flex items-center justify-center"
-              >
-                <div
-                  class="w-6 h-6 flex items-center justify-center text-gray-700"
-                >
-                  <i class="ri-bank-fill ri-lg"></i>
-                </div>
-              </div>
-              <div
-                class="bg-white rounded p-2 flex items-center justify-center"
-              >
-                <div
-                  class="w-6 h-6 flex items-center justify-center text-gray-700"
-                >
-                  <i class="ri-alipay-fill ri-lg"></i>
-                </div>
-              </div>
-              <div
-                class="bg-white rounded p-2 flex items-center justify-center"
-              >
-                <div
-                  class="w-6 h-6 flex items-center justify-center text-gray-700"
-                >
-                  <i class="ri-qr-code-fill ri-lg"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center"
-        >
-          <p class="text-gray-500 text-sm">
-            © 2025 Eventify. Hak Cipta Dilindungi.
-          </p>
-          <div class="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" class="text-gray-500 hover:text-white text-sm"
-              >Syarat & Ketentuan</a
-            >
-            <a href="#" class="text-gray-500 hover:text-white text-sm"
-              >Kebijakan Privasi</a
-            >
-            <a href="#" class="text-gray-500 hover:text-white text-sm">FAQ</a>
-          </div>
+    <footer class="bg-gray-900 text-white pt-12 pb-6 text-center">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 justify-items-center">
+      <!-- Kolom 1 -->
+      <div>
+        <a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">Eventify</a>
+        <p class="text-gray-400 mb-4 max-w-xs">
+          Platform pemesanan tiket event terpercaya di Indonesia. Temukan dan beli tiket event dengan mudah dan aman.
+        </p>
+        <div class="flex justify-center space-x-4">
+          <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+            <i class="ri-facebook-fill"></i>
+          </a>
+          <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+            <i class="ri-twitter-x-fill"></i>
+          </a>
+          <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+            <i class="ri-instagram-fill"></i>
+          </a>
+          <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+            <i class="ri-linkedin-fill"></i>
+          </a>
         </div>
       </div>
-    </footer>
+
+      <!-- Kolom 2 -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Kontak</h4>
+        <ul class="space-y-3 text-gray-400">
+          <li><i class="ri-map-pin-line mr-2"></i>Jl. Jendral Sudirman No.123</li>
+          <li><i class="ri-phone-line mr-2"></i>+62 21 1234 5678</li>
+          <li><i class="ri-mail-line mr-2"></i>info@eventify.id</li>
+        </ul>
+      </div>
+
+      <!-- Kolom 3 -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Metode Pembayaran</h4>
+        <span class="text-gray-400">QRIS</span>
+      </div>
+    </div>
+
+    <!-- Bottom Footer -->
+    <div class="border-t border-gray-800 pt-6">
+      <p class="text-gray-500 text-sm mb-2">© 2025 Eventify. Hak Cipta Dilindungi.</p>
+      <div class="flex justify-center space-x-4 text-sm">
+        <a href="#" class="text-gray-500 hover:text-white">Syarat & Ketentuan</a>
+        <a href="#" class="text-gray-500 hover:text-white">Kebijakan Privasi</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
     <script id="searchFunctionality">
       document.addEventListener("DOMContentLoaded", function () {
         const searchInput = document.querySelector(

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Footer Eventify</title>
 
-  <!-- Font Awesome untuk ikon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <!-- Google Font Pacifico -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
 
   <style>
     body {
@@ -17,103 +16,102 @@
       font-family: 'Inter', sans-serif;
     }
 
-    .logo {
-      font-family: 'Pacifico', cursive;
-    }
-
-    .footer {
-      background-color: #0b101c;
+    footer {
+      background-color: #111827;
       color: #fff;
-      padding: 40px 20px;
+      padding: 40px 20px 30px;
+      text-align: center;
     }
 
     .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 30px;
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+      margin-bottom: 30px;
     }
 
-    .footer-section {
-      flex: 1 1 220px;
-    }
-
-    .footer .logo {
+    .footer-logo {
+      font-family: 'Pacifico', cursive;
       font-size: 24px;
       margin-bottom: 10px;
+      display: inline-block;
     }
 
-    .footer p,
-    .footer li,
-    .footer a {
+    .footer-text {
+      color: #9ca3af;
       font-size: 14px;
       line-height: 1.6;
-      color: #fff;
+      margin-bottom: 15px;
     }
 
-    .footer a {
-      text-decoration: none;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
     }
 
     .social-icons a {
-      margin-right: 10px;
-      font-size: 16px;
+      width: 32px;
+      height: 32px;
+      background-color: #1f2937;
       color: #fff;
-      background: #1f2937;
-      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 50%;
-      display: inline-block;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    .social-icons a:hover {
+      background-color: #2563eb;
+    }
+
+    .footer-section h4 {
+      font-size: 16px;
+      margin-bottom: 10px;
     }
 
     .footer-section ul {
       list-style: none;
       padding: 0;
+      margin: 0;
+      color: #9ca3af;
+      font-size: 14px;
     }
 
-    .qris-img {
-      width: 100px;
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 10px;
+    .footer-section ul li {
+      margin-bottom: 10px;
     }
 
     .footer-bottom {
-      border-top: 1px solid #2c3e50;
-      margin-top: 30px;
+      border-top: 1px solid #1f2937;
       padding-top: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
       font-size: 13px;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
+      color: #6b7280;
     }
 
-    .footer-links a {
-      margin-left: 20px;
-      color: #aaa;
+    .footer-bottom a {
+      margin: 0 10px;
+      color: #9ca3af;
+      text-decoration: none;
     }
 
-    .footer-links a:hover {
+    .footer-bottom a:hover {
       color: #fff;
     }
   </style>
 </head>
 <body>
 
-<footer class="footer">
+<footer>
   <div class="footer-container">
-    <div class="footer-section">
-      <h2 class="logo">Eventify</h2>
-      <p>Platform pemesanan tiket event terpercaya di Indonesia. Temukan dan beli tiket event dengan mudah dan aman.</p>
+    <!-- Kolom 1 -->
+    <div>
+      <span class="footer-logo">Eventify</span>
+      <p class="footer-text">Platform pemesanan tiket event terpercaya di Indonesia. Temukan dan beli tiket event dengan mudah dan aman.</p>
       <div class="social-icons">
         <a href="#"><i class="fab fa-facebook-f"></i></a>
         <a href="#"><i class="fab fa-x-twitter"></i></a>
@@ -122,33 +120,27 @@
       </div>
     </div>
 
+    <!-- Kolom 2 -->
     <div class="footer-section">
-      <h3>Link Cepat</h3>
+      <h4>Kontak</h4>
       <ul>
-        <li><a href="#">Beranda</a></li>
-        <li><a href="#">Event</a></li>
-        <li><a href="#">Tiket Saya</a></li>
-        <li><a href="#">Bantuan</a></li>
+        <li><i class="fas fa-map-marker-alt"></i> Jl. Jendral Sudirman No.123</li>
+        <li><i class="fas fa-phone"></i> +62 21 1234 5678</li>
+        <li><i class="fas fa-envelope"></i> info@eventify.id</li>
       </ul>
     </div>
 
+    <!-- Kolom 3 -->
     <div class="footer-section">
-      <h3>Kontak</h3>
-      <p><i class="fas fa-map-marker-alt"></i> Jl. Jendral Sudirman No.123, Jakarta Pusat, Indonesia</p>
-      <p><i class="fas fa-phone"></i> +62 21 1234 5678</p>
-      <p><i class="fas fa-envelope"></i> info@eventify.id</p>
-    </div>
-
-    <div class="footer-section">
-      <h3>Metode Pembayaran</h3>
-      QRIS
+      <h4>Metode Pembayaran</h4>
+      <p class="footer-text">QRIS</p>
     </div>
   </div>
 
   <div class="footer-bottom">
     <p>© 2025 Eventify. Hak Cipta Dilindungi.</p>
-    <div class="footer-links">
-      <a href="#">Syarat & Ketentuan</a>
+    <div>
+      <a href="#">Syarat & Ketentuan</a> |
       <a href="#">Kebijakan Privasi</a>
     </div>
   </div>
