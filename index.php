@@ -1,5 +1,5 @@
 <?php
-    include 'views/layout/header_versi_belum_login.php';
+    include 'views/layout/header.php';
 ?>
 
 <section class="pt-24 relative">
