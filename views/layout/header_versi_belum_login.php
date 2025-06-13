@@ -27,7 +27,7 @@
         <div class="flex items-center">
           <a href="#" class="text-2xl logo text-white">Eventify</a>
           <div class="hidden md:flex ml-10 space-x-6">
-            <a href="../../body/index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
+            <a href="../../index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
             <a href="../../Pengguna/events/events.php" class="font-medium hover:text-gray-200 transition">Events</a>
             <a href="#" class="font-medium hover:text-gray-200 transition">Tiket Saya</a>
           </div>
