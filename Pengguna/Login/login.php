@@ -1,54 +1,50 @@
 <?php
-// --- AWAL BAGIAN PROSES (LOGIKA PHP) ---
 
-// Mulai session
+
+
 session_start();
 
-// Jika pengguna sudah login, langsung arahkan ke halaman utama
+
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: /eventify/body/index.php");
+    header("location: /eventify/index.php");
     exit;
 }
 
-// --- KODE KONEKSI DATABASE LANGSUNG DI SINI ---
+
 $db_server = "localhost";
 $db_username = "root";
 $db_password = "";
 $db_name = "eventify";
 
-// Membuat koneksi
+
 $koneksi = new mysqli($db_server, $db_username, $db_password, $db_name);
 
-// Cek koneksi
+
 if ($koneksi->connect_error) {
     die("KONEKSI GAGAL: " . $koneksi->connect_error);
 }
-// --- AKHIR KODE KONEKSI ---
 
-// Inisialisasi variabel
+
+
 $email = $password = "";
 $login_err = "";
 
-// Proses data form jika ada request POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Validasi email
     if (empty(trim($_POST["email"]))) {
         $login_err = "Mohon masukkan email.";
     } else {
         $email = trim($_POST["email"]);
     }
     
-    // Validasi password
     if (empty(trim($_POST["password"]))) {
         $login_err = "Mohon masukkan kata sandi.";
     } else {
         $password = trim($_POST["password"]);
     }
     
-    // Jika tidak ada error validasi
+
     if (empty($login_err)) {
-        // Gunakan Prepared Statements untuk keamanan
         $sql = "SELECT id, nama_lengkap, kata_sandi FROM user WHERE email = ?";
         
         if ($stmt = $koneksi->prepare($sql)) {
@@ -60,25 +56,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($result->num_rows == 1) {
                     $user = $result->fetch_assoc();
                     
-                    // Verifikasi password
                     if (password_verify($password, $user['kata_sandi'])) {
-                        // Password benar, mulai session
                         session_start();
                         
-                        // Simpan data ke session
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["user_id"] = $user['id']; // Menggunakan user_id dari database
+                        $_SESSION["user_id"] = $user['id'];
                         $_SESSION["nama_lengkap"] = $user['nama_lengkap'];                            
                         
-                        // Redirect ke halaman utama
-                        header("location: /eventify/body/index.php");
+                        header("location: /eventify/index.php");
                         exit;
                     } else {
-                        // Jika password salah
                         $login_err = "Email atau kata sandi salah.";
                     }
                 } else {
-                    // Jika email tidak ditemukan
                     $login_err = "Email atau kata sandi salah.";
                 }
             } else {
@@ -89,7 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $koneksi->close();
 }
-// --- AKHIR BAGIAN PROSES ---
 ?>
 
 <!DOCTYPE html>
@@ -108,7 +97,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="bg-white">
     <div class="auth-container flex flex-col md:flex-row">
-        <!-- Sisi Kiri -->
         <div class="event-bg w-full md:w-1/2 flex items-center justify-center p-8 text-center">
             <div class="max-w-md">
                 <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Temukan Event Luar Biasa</h1>
@@ -116,7 +104,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
-        <!-- Sisi Kanan -->
         <div class="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12">
             <div class="w-full max-w-md">
                 <div class="text-center mb-8">

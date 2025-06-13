@@ -1,52 +1,46 @@
 <?php
-// --- AWAL BAGIAN PROSES (LOGIKA PHP) ---
 
-// Mulai session
+
+
 session_start();
 
-// Jika pengguna sudah login, langsung arahkan ke halaman utama
+
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: /eventify/body/index.php");
     exit;
 }
 
-// --- KODE KONEKSI DATABASE LANGSUNG DI SINI ---
-// Variabel koneksi didefinisikan di sini untuk memastikan tidak ada error path lagi.
+
 $db_server = "localhost";
 $db_username = "root";
 $db_password = "";
 $db_name = "eventify";
 
-// Membuat koneksi
+
 $koneksi = new mysqli($db_server, $db_username, $db_password, $db_name);
 
-// Cek koneksi
+
 if ($koneksi->connect_error) {
-    // Hentikan eksekusi jika koneksi gagal
     die("KONEKSI GAGAL: " . $koneksi->connect_error);
 }
-// --- AKHIR KODE KONEKSI ---
 
 
-// Inisialisasi variabel untuk pesan error
+
+
 $nama_lengkap = $email = $password = $confirm_password = "";
 $nama_err = $email_err = $password_err = $confirm_password_err = $register_success = "";
 
-// Proses data form ketika form di-submit
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Validasi nama lengkap
     if (empty(trim($_POST["nama_lengkap"]))) {
         $nama_err = "Mohon masukkan nama lengkap.";
     } else {
         $nama_lengkap = trim($_POST["nama_lengkap"]);
     }
 
-    // Validasi email
     if (empty(trim($_POST["email"]))) {
         $email_err = "Mohon masukkan email.";
     } else {
-        // Cek apakah email sudah terdaftar
         $sql_check = "SELECT id FROM user WHERE email = ?";
         if ($stmt_check = $koneksi->prepare($sql_check)) {
             $stmt_check->bind_param("s", $param_email_check);
@@ -64,7 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Validasi password
     if (empty(trim($_POST["password"]))) {
         $password_err = "Mohon masukkan kata sandi.";
     } elseif (strlen(trim($_POST["password"])) < 8) {
@@ -73,7 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
     
-    // Validasi konfirmasi password
     if (empty(trim($_POST["confirm_password"]))) {
         $confirm_password_err = "Mohon konfirmasi kata sandi.";
     } else {
@@ -83,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Cek apakah ada error sebelum memasukkan data
     if (empty($nama_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
         
         $sql_insert = "INSERT INTO user (nama_lengkap, email, kata_sandi) VALUES (?, ?, ?)";
@@ -93,11 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             $param_nama = $nama_lengkap;
             $param_email = $email;
-            // Enkripsi password sebelum disimpan
             $param_password = password_hash($password, PASSWORD_DEFAULT); 
             
             if ($stmt_insert->execute()) {
-                // Set pesan sukses
                 $register_success = "Pendaftaran berhasil! Silakan <a href='login.php' class='font-bold underline'>login</a>.";
             } else {
                 echo "<script>alert('Oops! Terjadi kesalahan. Silakan coba lagi nanti.');</script>";
@@ -108,7 +97,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $koneksi->close();
 }
-// --- AKHIR BAGIAN PROSES ---
 ?>
 
 <!DOCTYPE html>
@@ -127,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="bg-white">
     <div class="auth-container flex flex-col md:flex-row">
-        <!-- Sisi Kiri - Background -->
         <div class="event-bg w-full md:w-1/2 flex items-center justify-center p-8 text-center">
             <div class="max-w-md">
                 <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Gabung dengan Komunitas Event Terbesar</h1>
@@ -135,7 +122,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
-        <!-- Sisi Kanan - Form Registrasi -->
         <div class="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12">
             <div class="w-full max-w-md">
                 <div class="text-center mb-8">
@@ -147,7 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p class="text-gray-600 mb-8">Hanya butuh beberapa detik untuk memulai.</p>
                     
                     <?php 
-                    // Tampilkan pesan sukses jika ada
                     if(!empty($register_success)){
                         echo '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">' . $register_success . '</div>';
                     }
