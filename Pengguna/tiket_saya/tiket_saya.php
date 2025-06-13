@@ -1,47 +1,76 @@
 <?php
-include '../../views/layout/header.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("Location: ../Login/login.php");
+    exit;
+}
 
 
-$tiketData = [
-    [
-        'id_pesanan' => 'EVT12345',
-        'nama_event' => 'Dewa 19 Reunion Concert',
-        'tanggal' => '9 Juni 2025',
-        'waktu' => '19:00 WIB',
-        'lokasi' => 'Gelora Bung Karno, Jakarta',
-        'gambar_url' => 'https://readdy.ai/api/search-image?query=A%20vibrant%20music%20concert%20with%20a%20popular%20band%20performing%20on%20stage%20with%20colorful%20lights%20and%20effects&width=600&height=400&seq=event1&orientation=landscape',
-        'jumlah_tiket' => 2,
-        'kategori' => 'VIP',
-        'status' => 'aktif'
-    ],
-    [
-        'id_pesanan' => 'EVT67890',
-        'nama_event' => 'Digital Marketing Masterclass',
-        'tanggal' => '15 Juni 2025',
-        'waktu' => '09:00 WIB',
-        'lokasi' => 'Hotel Mulia, Surabaya',
-        'gambar_url' => 'https://readdy.ai/api/search-image?query=A%20professional%20business%20seminar%20or%20conference%20with%20speakers%20on%20stage&width=600&height=400&seq=event2&orientation=landscape',
-        'jumlah_tiket' => 1,
-        'kategori' => 'Reguler',
-        'status' => 'aktif'
-    ],
-    [
-        'id_pesanan' => 'EVT54321',
-        'nama_event' => 'Pameran Seni Rupa Kontemporer',
-        'tanggal' => '25 April 2025',
-        'waktu' => '10:00 WIB',
-        'lokasi' => 'Museum Nasional, Jakarta',
-        'gambar_url' => 'https://readdy.ai/api/search-image?query=An%20art%20exhibition%20in%20a%20modern%20gallery%20space%20with%20paintings%20and%20sculptures&width=600&height=400&seq=event4&orientation=landscape',
-        'jumlah_tiket' => 1,
-        'kategori' => 'Umum',
-        'status' => 'digunakan'
-    ]
-];
+$db_server = "localhost";
+$db_username = "root";
+$db_password = "";
+$db_name = "eventify";
+$koneksi = new mysqli($db_server, $db_username, $db_password, $db_name);
+if ($koneksi->connect_error) {
+    die("KONEKSI GAGAL: " . $koneksi->connect_error);
+}
 
 
+$transaksi_list = [];
+$user_id = $_SESSION['user_id']; 
+
+$sql = "SELECT 
+            t.id AS id_transaksi,
+            e.nama_event,
+            t.qty AS jumlah_tiket,
+            t.total_harga,
+            t.created_at AS tanggal_transaksi,
+            p.status AS status_pembayaran
+        FROM transaksi t
+        JOIN event e ON t.event_id = e.id
+        LEFT JOIN pembayaran p ON t.id = p.transaksi_id
+        WHERE t.user_id = ?
+        ORDER BY t.created_at DESC";
+
+if ($stmt = $koneksi->prepare($sql)) {
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $transaksi_list[] = $row;
+        }
+    }
+    $stmt->close();
+} else {
+    die("Error preparing statement: " . $koneksi->error);
+}
+
+$koneksi->close();
+
+
+include $_SERVER['DOCUMENT_ROOT'] . '/eventify/views/layout/header.php';
 ?>
 
-<main class="pt-24 pb-16">
+
+<style>
+    html {
+        height: 100%;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    main.content-wrapper {
+        flex-grow: 1;
+    }
+</style>
+
+<main class="content-wrapper pt-24 pb-16 bg-gray-50">
     <div class="container mx-auto px-4">
         <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Tiket Saya</h1>
 
@@ -50,11 +79,8 @@ $tiketData = [
                 <button data-tab="aktif" class="tab-button active py-3 px-6 -mb-px text-gray-600 hover:text-primary focus:outline-none">
                     Aktif
                 </button>
-                <button data-tab="digunakan" class="tab-button py-3 px-6 text-gray-600 hover:text-primary focus:outline-none">
-                    Telah Digunakan
-                </button>
-                <button data-tab="dibatalkan" class="tab-button py-3 px-6 text-gray-600 hover:text-primary focus:outline-none">
-                    Dibatalkan
+                <button data-tab="pending" class="tab-button py-3 px-6 text-gray-600 hover:text-primary focus:outline-none">
+                    Menunggu Pembayaran
                 </button>
             </div>
         </div>
@@ -63,33 +89,23 @@ $tiketData = [
             <div id="tab-content-aktif" class="space-y-6">
                 <?php
                 $adaTiketAktif = false;
-                foreach ($tiketData as $tiket) {
-                    if ($tiket['status'] == 'aktif') {
+                foreach ($transaksi_list as $transaksi) {
+                    if (isset($transaksi['status_pembayaran']) && $transaksi['status_pembayaran'] == 'berhasil') {
                         $adaTiketAktif = true;
                         echo '
                         <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
-                            <div class="flex flex-col md:flex-row">
-                                <!-- Gambar Event -->
-                                <div class="md:w-1/4">
-                                    <img class="h-full w-full object-cover" src="' . htmlspecialchars($tiket['gambar_url']) . '" alt="Gambar ' . htmlspecialchars($tiket['nama_event']) . '">
+                            <div class="p-6">
+                                <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-1 rounded-full mb-3">TIKET AKTIF</span>
+                                <h2 class="text-2xl font-bold text-gray-900">' . htmlspecialchars($transaksi['nama_event']) . '</h2>
+                                <p class="text-gray-500 mt-2">Tanggal Transaksi: ' . date('d F Y, H:i', strtotime($transaksi['tanggal_transaksi'])) . '</p>
+                                <p class="text-gray-700 mt-3 font-medium"><strong>' . htmlspecialchars($transaksi['jumlah_tiket']) . ' Tiket</strong></p>
+                                <hr class="my-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600">Total Pembayaran</span>
+                                    <span class="text-xl font-bold text-primary">Rp ' . number_format($transaksi['total_harga'], 0, ',', '.') . '</span>
                                 </div>
-                                <!-- Detail Tiket -->
-                                <div class="p-6 md:w-2/4 flex flex-col justify-between">
-                                    <div>
-                                        <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">TIKET AKTIF</span>
-                                        <h2 class="text-2xl font-bold text-gray-900">' . htmlspecialchars($tiket['nama_event']) . '</h2>
-                                        <p class="text-gray-500 mt-2 flex items-center"><i class="ri-calendar-line mr-2"></i>' . htmlspecialchars($tiket['tanggal']) . ' • ' . htmlspecialchars($tiket['waktu']) . '</p>
-                                        <p class="text-gray-500 mt-1 flex items-center"><i class="ri-map-pin-line mr-2"></i>' . htmlspecialchars($tiket['lokasi']) . '</p>
-                                        <p class="text-gray-700 mt-3 font-medium"><strong>' . htmlspecialchars($tiket['jumlah_tiket']) . ' Tiket</strong> - Kategori ' . htmlspecialchars($tiket['kategori']) . '</p>
-                                    </div>
-                                    <button class="mt-4 text-left text-primary font-semibold hover:underline">Lihat Detail Tiket</button>
-                                </div>
-                                <!-- QR Code -->
-                                <div class="p-6 md:w-1/4 flex flex-col items-center justify-center bg-gray-50 border-l border-gray-200">
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=' . htmlspecialchars($tiket['id_pesanan']) . '" alt="QR Code Tiket" class="rounded-lg">
-                                    <p class="text-sm text-gray-600 mt-3 font-medium">ID Pesanan: ' . htmlspecialchars($tiket['id_pesanan']) . '</p>
-                                    <p class="text-xs text-gray-500 mt-1">Pindai di pintu masuk</p>
-                                </div>
+                                <!-- Tombol E-Ticket Diperbaiki dan Fungsional -->
+                                <a href="e_ticket.php?id=' . $transaksi['id_transaksi'] . '" target="_blank" class="block mt-4 text-center text-white font-semibold bg-blue-600 hover:bg-blue-700 py-2 rounded-lg">Lihat E-Ticket</a>
                             </div>
                         </div>';
                     }
@@ -99,56 +115,45 @@ $tiketData = [
                     <div class="bg-white rounded-xl shadow-md p-8 text-center">
                         <i class="ri-ticket-line text-5xl text-gray-400 mb-4"></i>
                         <h3 class="text-xl font-semibold text-gray-700">Tidak Ada Tiket Aktif</h3>
-                        <p class="text-gray-500 mt-2">Anda tidak memiliki tiket untuk event yang akan datang.</p>
+                        <p class="text-gray-500 mt-2">Anda belum memiliki tiket yang pembayarannya berhasil.</p>
                     </div>';
                 }
                 ?>
             </div>
 
-            <div id="tab-content-digunakan" class="hidden space-y-6">
+            <div id="tab-content-pending" class="hidden space-y-6">
                 <?php
-                $adaTiketDigunakan = false;
-                foreach ($tiketData as $tiket) {
-                    if ($tiket['status'] == 'digunakan') {
-                        $adaTiketDigunakan = true;
+                $adaTiketPending = false;
+                foreach ($transaksi_list as $transaksi) {
+                    if (!isset($transaksi['status_pembayaran']) || $transaksi['status_pembayaran'] != 'berhasil') {
+                        $adaTiketPending = true;
                         echo '
-                        <div class="bg-white rounded-xl shadow-md overflow-hidden opacity-70">
-                            <div class="flex flex-col md:flex-row">
-                                <!-- Gambar Event -->
-                                <div class="md:w-1/4">
-                                    <img class="h-full w-full object-cover" src="' . htmlspecialchars($tiket['gambar_url']) . '" alt="Gambar ' . htmlspecialchars($tiket['nama_event']) . '">
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+                             <div class="p-6">
+                                <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-1 rounded-full mb-3">MENUNGGU PEMBAYARAN</span>
+                                <h2 class="text-2xl font-bold text-gray-900">' . htmlspecialchars($transaksi['nama_event']) . '</h2>
+                                <p class="text-gray-500 mt-2">Tanggal Transaksi: ' . date('d F Y, H:i', strtotime($transaksi['tanggal_transaksi'])) . '</p>
+                                <p class="text-gray-700 mt-3 font-medium"><strong>' . htmlspecialchars($transaksi['jumlah_tiket']) . ' Tiket</strong></p>
+                                <hr class="my-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600">Total Tagihan</span>
+                                    <span class="text-xl font-bold text-yellow-600">Rp ' . number_format($transaksi['total_harga'], 0, ',', '.') . '</span>
                                 </div>
-                                <!-- Detail Tiket -->
-                                <div class="p-6 md:w-3/4 flex flex-col justify-between">
-                                    <div>
-                                        <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">TELAH DIGUNAKAN</span>
-                                        <h2 class="text-2xl font-bold text-gray-900">' . htmlspecialchars($tiket['nama_event']) . '</h2>
-                                        <p class="text-gray-500 mt-2 flex items-center"><i class="ri-calendar-check-line mr-2"></i>Telah digunakan pada ' . htmlspecialchars($tiket['tanggal']) . '</p>
-                                        <p class="text-gray-500 mt-1 flex items-center"><i class="ri-map-pin-line mr-2"></i>' . htmlspecialchars($tiket['lokasi']) . '</p>
-                                    </div>
-                                    <button class="mt-4 text-left text-gray-500 font-semibold cursor-not-allowed">Lihat Detail Tiket</button>
-                                </div>
+                                <!-- Tombol Pembayaran Diperbaiki -->
+                                <a href="../pemesanan_pembayaran/pembayaran.php?transaksi_id=' . $transaksi['id_transaksi'] . '" class="block mt-4 text-center text-white font-semibold w-full bg-yellow-500 hover:bg-yellow-600 py-2 rounded-lg">Lanjutkan Pembayaran</a>
                             </div>
                         </div>';
                     }
                 }
-                if (!$adaTiketDigunakan) {
+                if (!$adaTiketPending) {
                     echo '
                     <div class="bg-white rounded-xl shadow-md p-8 text-center">
-                        <i class="ri-history-line text-5xl text-gray-400 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-gray-700">Tidak Ada Riwayat Tiket</h3>
-                        <p class="text-gray-500 mt-2">Anda belum pernah menggunakan tiket dari event manapun.</p>
+                        <i class="ri-time-line text-5xl text-gray-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-700">Tidak Ada Transaksi Pending</h3>
+                        <p class="text-gray-500 mt-2">Semua transaksi Anda sudah lunas atau Anda belum melakukan transaksi.</p>
                     </div>';
                 }
                 ?>
-            </div>
-            
-            <div id="tab-content-dibatalkan" class="hidden">
-                 <div class="bg-white rounded-xl shadow-md p-8 text-center">
-                    <i class="ri-close-circle-line text-5xl text-gray-400 mb-4"></i>
-                    <h3 class="text-xl font-semibold text-gray-700">Tidak Ada Tiket Dibatalkan</h3>
-                    <p class="text-gray-500 mt-2">Semua tiket Anda aman dan tidak ada yang dibatalkan.</p>
-                </div>
             </div>
         </div>
     </div>
@@ -160,6 +165,7 @@ $tiketData = [
         color: white;
         font-weight: 600;
         border-radius: 6px 6px 0 0;
+        border-color: #6200EA;
     }
     .tab-button {
         transition: all 0.3s ease;
@@ -169,25 +175,18 @@ $tiketData = [
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const tabs = document.querySelectorAll('.tab-button');
-        const tabContents = {
-            aktif: document.getElementById('tab-content-aktif'),
-            digunakan: document.getElementById('tab-content-digunakan'),
-            dibatalkan: document.getElementById('tab-content-dibatalkan')
-        };
-
+        
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                tabs.forEach(item => item.classList.remove('active'));
+                const tabTarget = tab.dataset.tab;
                 
-                Object.values(tabContents).forEach(content => {
-                    if(content) content.classList.add('hidden');
-                });
+                tabs.forEach(item => item.classList.remove('active'));
+                document.querySelectorAll('[id^="tab-content-"]').forEach(content => content.classList.add('hidden'));
 
                 tab.classList.add('active');
-                
-                const activeTabContent = tabContents[tab.dataset.tab];
-                if (activeTabContent) {
-                    activeTabContent.classList.remove('hidden');
+                const activeContent = document.getElementById('tab-content-' + tabTarget);
+                if(activeContent) {
+                    activeContent.classList.remove('hidden');
                 }
             });
         });
@@ -195,5 +194,5 @@ $tiketData = [
 </script>
 
 <?php
-include '../../views/layout/footer.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/eventify/views/layout/footer.php';
 ?>

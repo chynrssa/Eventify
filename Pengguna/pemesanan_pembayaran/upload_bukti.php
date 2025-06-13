@@ -8,7 +8,6 @@ include '../pemesanan_pembayaran/db.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['transaksi_id']) && isset($_FILES['bukti_pembayaran'])) {
     $transaksi_id = (int)$_POST['transaksi_id'];
 
-    // Direktori upload bukti pembayaran
     $uploadDir = '../../uploads/bukti/';
     if (!file_exists($uploadDir)) {
         mkdir($uploadDir, 0777, true);
@@ -24,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['transaksi_id']) && is
         $filePath = $uploadDir . $newFileName;
 
         if (move_uploaded_file($fileTmp, $filePath)) {
-            // Cek apakah data pembayaran sudah ada untuk transaksi ini
             $stmtCheck = $conn->prepare("SELECT id FROM pembayaran WHERE transaksi_id = ?");
             $stmtCheck->bind_param("i", $transaksi_id);
             $stmtCheck->execute();
@@ -32,11 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['transaksi_id']) && is
             $stmtCheck->close();
 
             if ($resCheck) {
-                // Update bukti dan status menjadi 'berhasil', update timestamp
                 $stmt = $conn->prepare("UPDATE pembayaran SET bukti = ?, status = 'berhasil', created_at = NOW() WHERE transaksi_id = ?");
                 $stmt->bind_param("si", $newFileName, $transaksi_id);
             } else {
-                // Insert data pembayaran baru dengan status 'berhasil'
                 $stmt = $conn->prepare("INSERT INTO pembayaran (transaksi_id, bukti, status) VALUES (?, ?, 'berhasil')");
                 $stmt->bind_param("is", $transaksi_id, $newFileName);
             }
@@ -68,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['transaksi_id']) && is
     <?php if (!empty($success)): ?>
       <h1 class="text-3xl font-extrabold text-green-600 mb-6">Pembayaran Berhasil!</h1>
       <p class="text-gray-700 text-lg mb-10">Terima kasih, bukti pembayaran Anda telah berhasil diunggah dan dikonfirmasi.</p>
-      <a href="../../body/index.php" class="mt-6 inline-block text-blue-600 hover:underline">Kembali ke Beranda</a>
+      <a href="../../index.php" class="mt-6 inline-block text-blue-600 hover:underline">Kembali ke Beranda</a>
     <?php else: ?>
       <h1 class="text-2xl font-bold text-red-600 mb-6">Upload Gagal!</h1>
       <p class="text-gray-700 text-lg"><?php echo isset($error) ? $error : 'Terjadi kesalahan.'; ?></p>

@@ -3,51 +3,65 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Ambil koneksi database
-include '../pemesanan_pembayaran/db.php';
 
-// Cek apakah session tersedia
-if (
-    isset($_SESSION['namaEvent'], $_SESSION['namaPemesan'], $_SESSION['email'], $_SESSION['jumlahTiket'], $_SESSION['transaksi_id'])
-) {
-    $namaEvent = $_SESSION['namaEvent'];
-    $namaPemesan = $_SESSION['namaPemesan'];
-    $email = $_SESSION['email'];
-    $jumlahTiket = $_SESSION['jumlahTiket'];
+$db_server = "localhost";
+$db_username = "root";
+$db_password = "";
+$db_name = "eventify";
+$conn = new mysqli($db_server, $db_username, $db_password, $db_name);
+if ($conn->connect_error) {
+    die("KONEKSI KE DATABASE GAGAL: " . $conn->connect_error);
+}
+
+
+
+if (isset($_GET['transaksi_id'])) {
+    $transaksi_id = (int)$_GET['transaksi_id'];
+    $_SESSION['transaksi_id'] = $transaksi_id; 
+} 
+elseif (isset($_SESSION['transaksi_id'])) {
     $transaksi_id = $_SESSION['transaksi_id'];
-} else {
-    // Redirect ke halaman pemesanan jika data tidak ditemukan
-    header("Location: ../pemesanan_pembayaran/pemesanan.php");
+} 
+else {
+    header("Location: daftar_event.php");
     exit();
 }
 
+
 $pesan_error = "";
-$totalHarga = 0; // untuk ditampilkan di detail
+$totalHarga = 0;
+$promo = 0;
+$namaEvent = '';
+$namaPemesan = '';
+$email = '';
+$jumlahTiket = 0;
 
-// Ambil data transaksi terbaru dari database, termasuk total harga dan promo
-$sql = "SELECT t.total_harga, t.promo
-        FROM transaksi t
-        WHERE t.id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $transaksi_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$transaksi = $result->fetch_assoc();
-$stmt->close();
+$sql_detail = "SELECT t.total_harga, t.promo, e.nama_event, u.nama_lengkap, u.email, t.qty 
+               FROM transaksi t
+               JOIN event e ON t.event_id = e.id
+               JOIN user u ON t.user_id = u.id
+               WHERE t.id = ?";
+$stmt_detail = $conn->prepare($sql_detail);
+$stmt_detail->bind_param("i", $transaksi_id);
+$stmt_detail->execute();
+$result_detail = $stmt_detail->get_result();
+$transaksi_detail = $result_detail->fetch_assoc();
+$stmt_detail->close();
 
-if ($transaksi) {
-    $totalHarga = $transaksi['total_harga'];
-    $promo = $transaksi['promo'];
+if ($transaksi_detail) {
+    $totalHarga = $transaksi_detail['total_harga'];
+    $promo = $transaksi_detail['promo'];
+    $namaEvent = $transaksi_detail['nama_event'];
+    $namaPemesan = $transaksi_detail['nama_lengkap'];
+    $email = $transaksi_detail['email'];
+    $jumlahTiket = $transaksi_detail['qty'];
 } else {
-    $totalHarga = 0;
-    $promo = 0;
+    die("Detail transaksi tidak ditemukan.");
 }
 
-// Proses form promo jika submit
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kode_promo'])) {
     $kode_promo = trim($_POST['kode_promo']);
 
-    // Ambil user_id dan event_id dari transaksi sebelumnya
     $sql2 = "SELECT user_id, event_id, qty FROM transaksi WHERE id = ?";
     $stmt2 = $conn->prepare($sql2);
     $stmt2->bind_param("i", $transaksi_id);
@@ -61,18 +75,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kode_promo'])) {
         $p_event_id = $dataTransaksi['event_id'];
         $p_qty = $dataTransaksi['qty'];
 
-        // Panggil stored procedure sp_buat_transaksi_promo
         $stmt3 = $conn->prepare("CALL sp_buat_transaksi_promo(?, ?, ?, ?, @p_total, @p_status)");
         $stmt3->bind_param("iiis", $p_user_id, $p_event_id, $p_qty, $kode_promo);
         $stmt3->execute();
         $stmt3->close();
 
-        // Ambil output procedure
         $result3 = $conn->query("SELECT @p_total AS total, @p_status AS status");
         $row3 = $result3->fetch_assoc();
 
         if ($row3['status'] === 'OK') {
-            // Update transaksi_id session ke transaksi terbaru (asumsi terakhir insert)
             $resId = $conn->query("SELECT id FROM transaksi WHERE user_id = $p_user_id AND event_id = $p_event_id ORDER BY id DESC LIMIT 1");
             if ($resId && $rowId = $resId->fetch_assoc()) {
                 $_SESSION['transaksi_id'] = $rowId['id'];
@@ -92,13 +103,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kode_promo'])) {
     }
 }
 
+include '../../views/layout/header.php'; 
 ?>
-
-<?php include '../../views/layout/header.php'; ?>
 
 <main class="flex-grow container mx-auto px-4 py-16">
   <div class="mb-12 text-center">
-    <h1 class="text-4xl font-extrabold text-blue-700">Pembayaran Tiket</h1>
+    <h1 class="text-4xl font-extrabold text-blue-700 mt-16">Pembayaran Tiket</h1>
     <p class="text-gray-600 mt-4 text-lg max-w-2xl mx-auto">
       Silakan lakukan pembayaran menggunakan QRIS di bawah ini, kemudian upload bukti pembayaran Anda.
     </p>
@@ -106,7 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kode_promo'])) {
 
   <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-10 border border-blue-100">
 
-    <!-- Detail Pemesanan -->
     <section class="mb-6">
       <h2 class="text-2xl text-center font-semibold text-gray-800 mb-6 border-b pb-4">Detail Pemesanan</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-700 text-base">
@@ -119,9 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kode_promo'])) {
       </div>
     </section>
 
-    <!-- Form Kode Promo -->
     <section class="mb-12 text-center">
-      <form method="POST" class="max-w-md mx-auto flex gap-4">
+      <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="max-w-md mx-auto flex gap-4">
         <input 
           type="text" 
           name="kode_promo" 
@@ -139,7 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kode_promo'])) {
       <?php endif; ?>
     </section>
 
-    <!-- QRIS -->
     <section class="mb-12 text-center">
       <h3 class="text-xl font-bold text-gray-800 mb-6">Scan QRIS Untuk Pembayaran</h3>
       <div class="flex justify-center">
@@ -149,12 +156,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kode_promo'])) {
       </div>
     </section>
 
-    <!-- Upload Bukti Pembayaran -->
     <section>
       <h3 class="text-xl font-semibold text-gray-800 mb-6 border-b pb-4 text-center">Upload Bukti Pembayaran</h3>
-      <form action="../pemesanan_pembayaran/upload_bukti.php" method="POST" enctype="multipart/form-data" class="space-y-6">
+      <form action="upload_bukti.php" method="POST" enctype="multipart/form-data" class="space-y-6">
 
-        <!-- Kirim transaksi_id sebagai acuan -->
         <input type="hidden" name="transaksi_id" value="<?php echo (int)$transaksi_id; ?>">
 
         <div class="flex flex-col items-center">
@@ -180,4 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kode_promo'])) {
   </div>
 </main>
 
-<?php include '../../views/layout/footer.php'; ?>
+<?php 
+$conn->close();
+include '../../views/layout/footer.php'; 
+?>
