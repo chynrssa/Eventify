@@ -19,9 +19,9 @@
 <nav class="gradient-bg text-white shadow-lg">
 <div class="container mx-auto px-4 py-3 flex items-center justify-between">
 <div class="flex items-center">
-<a href="#" class="text-2xl font-['Pacifico'] text-white">Eventify</a>
+<a href="../../body/index.php" class="text-2xl font-['Pacifico'] text-white">Eventify</a>
 <div class="hidden md:flex ml-10 space-x-6">
-<a href="index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
+<a href="../../body/index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
 <a href="../Pengguna/events/events.php" class="font-medium hover:text-gray-200 transition">Kategori Events</a>
 <a href="#" class="font-medium hover:text-gray-200 transition">Tiket Saya</a>
 
@@ -568,7 +568,7 @@
 </div>
 </div>
 <div class="mt-6 text-center">
-<p class="text-gray-600">Belum punya akun? <a href="#" class="text-primary hover:underline">Daftar sekarang</a></p>
+<p class="text-gray-600">Belum punya akun? <a href="../pengguna/login/login.php" class="text-primary hover:underline">Daftar sekarang</a></p>
 </div>
 </div>
 </div>
