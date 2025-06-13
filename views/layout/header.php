@@ -23,16 +23,27 @@
   <header class="fixed w-full z-50">
     <nav class="gradient-bg text-white shadow-lg">
       <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <!-- Logo + Menu -->
         <div class="flex items-center">
-          <a href="../../index.php" class="text-2xl logo text-white">Eventify</a>
+          <a href="../../body/index.php" class="text-2xl logo text-white">Eventify</a>
           <div class="hidden md:flex ml-10 space-x-6">
-            <a href="../../index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
+            <a href="../../body/index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
             <a href="../../Pengguna/events/events.php" class="font-medium hover:text-gray-200 transition">Kategori Events</a>
             <a href="#" class="font-medium hover:text-gray-200 transition">Tiket Saya</a>
 
           </div>
         </div>
 
+        <!-- Search + Buttons -->
+        <div class="hidden md:flex items-center space-x-4">
+          <div class="relative">
+            <div class="absolute right-3 top-2.5 text-gray-500">
+              <i class="ri-search-line text-lg"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile menu toggle -->
         <div class="md:hidden">
           <button id="mobile-menu-button" class="text-white text-2xl">
             <i class="ri-menu-line"></i>

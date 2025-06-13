@@ -11,7 +11,7 @@
     <!-- 1 -->
     <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden">
       <div class="relative aspect-square bg-gray-200">
-        <img src="https://images.unsplash.com/photo-1581092334600-5f8f62b699b0" alt="Seminar AI 2025" class="w-full h-full object-cover"/>
+        <img src="https://universitasmulia.ac.id/wp-content/uploads/2024/12/seminar-teknologi-ai-845x321.jpg" alt="Seminar AI 2025" class="w-full h-full object-cover"/>
       </div>
       <div class="p-4 text-center">
         <h3 class="font-bold text-gray-800">Seminar Teknologi AI 2025</h3>
@@ -25,7 +25,7 @@
     <!-- 2 -->
     <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden">
       <div class="relative aspect-square bg-gray-200">
-        <img src="https://images.unsplash.com/photo-1581091870622-2c9e8f2a2a7d" alt="Kesehatan Mental Mahasiswa" class="w-full h-full object-cover"/>
+        <img src="https://img.antaranews.com/cache/1200x800/2019/05/02/Psikologi.jpg.webp" alt="Kesehatan Mental Mahasiswa" class="w-full h-full object-cover"/>
       </div>
       <div class="p-4 text-center">
         <h3 class="font-bold text-gray-800">Seminar Kesehatan Mental Mahasiswa</h3>

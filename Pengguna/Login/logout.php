@@ -1,10 +1,9 @@
 <?php
 session_start();
+session_unset();    // Hapus semua session
+session_destroy();  // Hancurkan session
 
-$_SESSION = array();
-
-session_destroy();
-
-header("location: /eventify/body/index.php");
+// Redirect ke halaman login
+header("Location: ../../pengguna/login/login.php");
 exit;
 ?>

@@ -15,7 +15,8 @@
       <div class="p-4">
         <h3 class="font-bold text-lg text-gray-800">Konser Musik Jazz</h3>
         <p class="text-gray-600 text-sm">10 Juli 2025 | Jakarta Convention Center</p>
-        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md w-full">Pesan Tiket</button>
+        <p class="text-sm text-blue-600 font-bold mt-1">Rp 350.000</p>
+       <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Konser Musik Jazz Malam Minggu'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 
@@ -25,7 +26,8 @@
       <div class="p-4">
         <h3 class="font-bold text-lg text-gray-800">Festival Musik Indie Nusantara</h3>
         <p class="text-gray-600 text-sm">20 Juli 2025 | Lapangan Gasibu Bandung</p>
-        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md w-full">Pesan Tiket</button>
+        <p class="text-sm text-blue-600 font-bold mt-1">Rp 400.000</p>
+        <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Festival Musik Indie Nusantara'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 
@@ -35,27 +37,30 @@
       <div class="p-4">
         <h3 class="font-bold text-lg text-gray-800">Live Concert K-Pop Stars</h3>
         <p class="text-gray-600 text-sm">5 Agustus 2025 | GBK Jakarta</p>
-        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md w-full">Pesan Tiket</button>
+          <p class="text-sm text-blue-600 font-bold mt-1">Rp 750.000</p>
+       <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Live Concert K-Pop Stars 2025'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 
     <!-- Event 4 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1484771300158-316ec6bc7f57" alt="Rock Festival Indonesia" class="w-full h-48 object-cover">
+      <img src="https://www.visions.de/wp-content/uploads/Kraftklub-Nils-Lucas-9482-1536x1025.jpg" alt="Rock Festival Indonesia" class="w-full h-48 object-cover">
       <div class="p-4">
         <h3 class="font-bold text-lg text-gray-800">Rock Festival Indonesia</h3>
         <p class="text-gray-600 text-sm">15 September 2025 | Stadion Manahan Solo</p>
-        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md w-full">Pesan Tiket</button>
+        <p class="text-sm text-blue-600 font-bold mt-1">Rp 450.000</p>
+        <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Festival Musik Rock & Metal'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 
     <!-- Event 5 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1535968881730-82f80e99f3f1" alt="Konser Musik Dangdut" class="w-full h-48 object-cover">
+      <img src="https://imgcdn.espos.id/@espos/images/2023/12/konser-pemilu-wonogiri.jpg?quality=60" alt="Konser Musik Dangdut" class="w-full h-48 object-cover">
       <div class="p-4">
         <h3 class="font-bold text-lg text-gray-800">Konser Musik Dangdut</h3>
         <p class="text-gray-600 text-sm">10 Oktober 2025 | Alun-Alun Kota Malang</p>
-        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md w-full">Pesan Tiket</button>
+        <p class="text-sm text-blue-600 font-bold mt-1">Rp 250.000</p>
+       <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Konser Dangdut Malam Spektakuler'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 

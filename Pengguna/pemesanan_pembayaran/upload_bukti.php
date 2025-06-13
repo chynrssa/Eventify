@@ -1,13 +1,15 @@
 <?php
-// Proses upload file
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $namaEvent = htmlspecialchars($_POST['namaEvent']);
-    $namaPemesan = htmlspecialchars($_POST['namaPemesan']);
-    $email = htmlspecialchars($_POST['email']);
-    $jumlahTiket = htmlspecialchars($_POST['jumlahTiket']);
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-    // Folder penyimpanan bukti pembayaran
-    $uploadDir = '../../uploads/';
+include '../pemesanan_pembayaran/db.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['transaksi_id']) && isset($_FILES['bukti_pembayaran'])) {
+    $transaksi_id = (int)$_POST['transaksi_id'];
+
+    // Direktori upload bukti pembayaran
+    $uploadDir = '../../uploads/bukti/';
     if (!file_exists($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
@@ -15,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fileName = basename($_FILES['bukti_pembayaran']['name']);
     $fileTmp = $_FILES['bukti_pembayaran']['tmp_name'];
     $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-
     $allowedExt = ['jpg', 'jpeg', 'png'];
 
     if (in_array($fileExt, $allowedExt)) {
@@ -23,16 +24,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $filePath = $uploadDir . $newFileName;
 
         if (move_uploaded_file($fileTmp, $filePath)) {
-            // Simulasi data tersimpan (bisa disimpan ke database juga)
-            $success = true;
+            // Cek apakah data pembayaran sudah ada untuk transaksi ini
+            $stmtCheck = $conn->prepare("SELECT id FROM pembayaran WHERE transaksi_id = ?");
+            $stmtCheck->bind_param("i", $transaksi_id);
+            $stmtCheck->execute();
+            $resCheck = $stmtCheck->get_result()->fetch_assoc();
+            $stmtCheck->close();
+
+            if ($resCheck) {
+                // Update bukti dan status menjadi 'berhasil', update timestamp
+                $stmt = $conn->prepare("UPDATE pembayaran SET bukti = ?, status = 'berhasil', created_at = NOW() WHERE transaksi_id = ?");
+                $stmt->bind_param("si", $newFileName, $transaksi_id);
+            } else {
+                // Insert data pembayaran baru dengan status 'berhasil'
+                $stmt = $conn->prepare("INSERT INTO pembayaran (transaksi_id, bukti, status) VALUES (?, ?, 'berhasil')");
+                $stmt->bind_param("is", $transaksi_id, $newFileName);
+            }
+
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
+                $success = true;
+            } else {
+                $error = "Gagal menyimpan data ke database.";
+            }
+            $stmt->close();
         } else {
             $error = "Gagal mengupload file.";
         }
     } else {
-        $error = "Format file tidak diperbolehkan.";
+        $error = "Format file tidak diperbolehkan (hanya JPG, JPEG, PNG).";
     }
 } else {
-    header("Location: pembayaran.php");
+    header("Location: ../pemesanan_pembayaran/pembayaran.php");
     exit();
 }
 ?>
@@ -42,18 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <main class="flex-grow container mx-auto px-4 py-16">
   <div class="max-w-2xl mt-16 mx-auto bg-white rounded-3xl shadow-2xl p-10 text-center border border-blue-100">
     <?php if (!empty($success)): ?>
-      <!-- Popup sukses -->
       <h1 class="text-3xl font-extrabold text-green-600 mb-6">Pembayaran Berhasil!</h1>
-      <p class="text-gray-700 text-lg mb-10">Terima kasih, bukti pembayaran Anda telah berhasil diunggah.</p>
-    <a href="../../body/index.php" class="mt-6 inline-block text-blue-600 hover:underline">Kembali</a>
-
+      <p class="text-gray-700 text-lg mb-10">Terima kasih, bukti pembayaran Anda telah berhasil diunggah dan dikonfirmasi.</p>
+      <a href="../../body/index.php" class="mt-6 inline-block text-blue-600 hover:underline">Kembali ke Beranda</a>
     <?php else: ?>
       <h1 class="text-2xl font-bold text-red-600 mb-6">Upload Gagal!</h1>
-      <p class="text-gray-700 text-lg"><?php echo $error; ?></p>
-      <a href="../pembayaran.php" class="mt-6 inline-block text-blue-600 hover:underline">Kembali</a>
+      <p class="text-gray-700 text-lg"><?php echo isset($error) ? $error : 'Terjadi kesalahan.'; ?></p>
+      <a href="pembayaran.php" class="mt-6 inline-block text-blue-600 hover:underline">Kembali ke Pembayaran</a>
     <?php endif; ?>
   </div>
-</main class="flex-grow container mx-auto px-4 py-16">
-
+</main>
 
 <?php include '../../views/layout/footer.php'; ?>

@@ -13,24 +13,26 @@
     <!-- Event 1 -->
     <div class="bg-white rounded-lg shadow-sm overflow-hidden">
       <div class="relative aspect-square bg-gray-200">
-        <img src="https://images.unsplash.com/photo-1599058918141-fd9e0d7bd729" alt="Marathon Nusantara" class="w-full h-full object-cover"/>
+        <img src="https://dorangadget.com/wp-content/uploads/2024/03/Event-Lari-Terbesar-di-Indonesia-copy.jpg" alt="Marathon Nusantara" class="w-full h-full object-cover"/>
       </div>
       <div class="p-4 text-center">
         <h3 class="font-bold text-gray-800">Marathon Nusantara 2025</h3>
-        <p class="text-sm text-gray-500 mt-1">Jakarta | 20 Juli 2025</p>
-        <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-full text-sm">Pesan Tiket</button>
+        <p class="text-sm text-gray-500 mt-1">Jakarta | 20 Juli 2025</p> 
+        <p class="text-sm text-blue-600 font-bold mt-1">Rp 50.000</p>
+       <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Fun Run 5K'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 
     <!-- Event 2 -->
     <div class="bg-white rounded-lg shadow-sm overflow-hidden">
       <div class="relative aspect-square bg-gray-200">
-        <img src="https://images.unsplash.com/photo-1610964171527-14d43c542b08" alt="Basket Championship" class="w-full h-full object-cover"/>
+        <img src="https://pawon.uajy.ac.id/images/article/Juara_Basket_UAJY_2025-11.jpg" alt="Basket Championship" class="w-full h-full object-cover"/>
       </div>
       <div class="p-4 text-center">
         <h3 class="font-bold text-gray-800">Basket Championship</h3>
         <p class="text-sm text-gray-500 mt-1">Bandung | 5 Agustus 2025</p>
-        <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-full text-sm">Pesan Tiket</button>
+        <p class="text-sm text-blue-600 font-bold mt-1">Rp 140.000</p>
+       <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Kejuaraan Basket Regional'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 
@@ -40,9 +42,10 @@
         <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b" alt="Turnamen Sepak Bola" class="w-full h-full object-cover"/>
       </div>
       <div class="p-4 text-center">
-        <h3 class="font-bold text-gray-800">Turnamen Sepak Bola Nasional</h3>
+        <h3 class="font-bold text-gray-800">Turnamen Sepak Bola Antar Mahasiswa</h3>
         <p class="text-sm text-gray-500 mt-1">Surabaya | 15 September 2025</p>
-        <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-full text-sm">Pesan Tiket</button>
+        <p class="text-sm text-blue-600 font-bold mt-1">Rp 120.000</p>
+       <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Turnamen Futsal Antar Mahasiswa'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 
@@ -54,31 +57,34 @@
       <div class="p-4 text-center">
         <h3 class="font-bold text-gray-800">Kejuaraan Bulu Tangkis Asia</h3>
         <p class="text-sm text-gray-500 mt-1">Yogyakarta | 22 Oktober 2025</p>
-        <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-full text-sm">Pesan Tiket</button>
+        <p class="text-sm text-blue-600 font-bold mt-1">Rp 130.000</p>
+       <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Turnamen Bulu Tangkis Nasional'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 
     <!-- Event 5 -->
     <div class="bg-white rounded-lg shadow-sm overflow-hidden">
       <div class="relative aspect-square bg-gray-200">
-        <img src="https://images.unsplash.com/photo-1599058904443-95ee07de8a64" alt="Triathlon Indonesia" class="w-full h-full object-cover"/>
+        <img src="https://img.harianjogja.com/posts/2024/09/04/1187082/whatsapp-image-2024-09-04-at-12.22.37.jpeg" alt="Fun Run 10K Indonesia" class="w-full h-full object-cover"/>
       </div>
       <div class="p-4 text-center">
-        <h3 class="font-bold text-gray-800">Triathlon Indonesia</h3>
+        <h3 class="font-bold text-gray-800">Fun Run 10K Indonesia</h3>
         <p class="text-sm text-gray-500 mt-1">Bali | 10 November 2025</p>
-        <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-full text-sm">Pesan Tiket</button>
+        <p class="text-sm text-blue-600 font-bold mt-1">Rp 90.000</p>
+       <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Lomba Lari 10K Kota Metropolitan'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 
     <!-- Event 6 -->
     <div class="bg-white rounded-lg shadow-sm overflow-hidden">
       <div class="relative aspect-square bg-gray-200">
-        <img src="https://images.unsplash.com/photo-1598476400543-99913b06e95e" alt="Voli Pantai Nusantara" class="w-full h-full object-cover"/>
+        <img src="https://img.antaranews.com/cache/1200x800/2022/06/27/voli-pantai.jpg.webp" alt="Voli Pantai Nusantara" class="w-full h-full object-cover"/>
       </div>
       <div class="p-4 text-center">
         <h3 class="font-bold text-gray-800">Voli Pantai Nusantara</h3>
         <p class="text-sm text-gray-500 mt-1">Lombok | 5 Desember 2025</p>
-        <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-full text-sm">Pesan Tiket</button>
+        <p class="text-sm text-blue-600 font-bold mt-1">Rp 100.000</p>
+       <a href="../pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Liga Voli Mahasiswa'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
       </div>
     </div>
 
