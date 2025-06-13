@@ -1,21 +1,22 @@
 <?php
 // Selalu mulai session di awal
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-// Panggil file koneksi ke database. Pastikan path ini benar.
-// Disarankan untuk membuat file db.php terpisah agar lebih rapi.
+// --- KONEKSI DATABASE ---
+// Sebaiknya, buat file db.php terpisah agar rapi, tapi untuk sementara kita letakkan di sini.
 $koneksi = new mysqli("localhost", "root", "", "eventify");
-
-// Cek koneksi
 if ($koneksi->connect_error) {
     die("Koneksi ke database gagal: " . $koneksi->connect_error);
 }
+// --- AKHIR KONEKSI ---
 
-// Cek apakah request berasal dari form
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Cek jika ada request dari form dan ada 'action'
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
 
     // --- PROSES LOGIN ---
-    if (isset($_POST['action']) && $_POST['action'] == "login") {
+    if ($_POST['action'] == "login") {
         
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -29,38 +30,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
 
-            // Verifikasi password yang di-hash
+            // Verifikasi password yang di-hash dari database
             if (password_verify($password, $user['kata_sandi'])) {
                 // Password benar, simpan data ke session
                 $_SESSION['loggedin'] = true;
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['nama_lengkap'] = $user['nama_lengkap'];
 
-                // Redirect ke halaman utama
-                header("Location: /eventify/body/index.php");
+                // --- PATH REDIRECT DIPERBAIKI ---
+                // Mengarahkan ke index.php di root folder
+                header("Location: ../../index.php");
                 exit;
-            } else {
-                // Password salah
-                echo "<script>alert('Email atau kata sandi salah!'); window.location.href='login.php';</script>";
             }
-        } else {
-            // Email tidak ditemukan
-            echo "<script>alert('Email atau kata sandi salah!'); window.location.href='login.php';</script>";
         }
+        
+        // Jika email tidak ditemukan ATAU password salah, berikan pesan error yang sama
+        echo "<script>alert('Email atau kata sandi salah!'); window.location.href='login.php';</script>";
         $stmt->close();
     }
 
     // --- PROSES REGISTER ---
-    if (isset($_POST['action']) && $_POST['action'] == "register") {
-        $nama = $_POST['fullName'];
+    if ($_POST['action'] == "register") {
+        $nama_lengkap = $_POST['fullName'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        // Validasi sederhana (bisa ditambahkan validasi konfirmasi password)
-        if (empty($nama) || empty($email) || empty($password)) {
-             echo "<script>alert('Semua kolom harus diisi!'); window.location.href='login.php';</script>";
-             exit;
-        }
+        $password = $_POST['password']; // Sebaiknya ada validasi konfirmasi password di sisi klien/server
 
         // Cek apakah email sudah ada
         $stmt = $koneksi->prepare("SELECT id FROM user WHERE email = ?");
@@ -71,12 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->num_rows > 0) {
             echo "<script>alert('Email sudah terdaftar!'); window.location.href='login.php';</script>";
         } else {
-            // Hash password sebelum disimpan
+            // HASH PASSWORD sebelum disimpan ke database
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-            // Insert ke database menggunakan prepared statement
+            // Insert pengguna baru ke database
             $insert_stmt = $koneksi->prepare("INSERT INTO user (nama_lengkap, email, kata_sandi) VALUES (?, ?, ?)");
-            $insert_stmt->bind_param("sss", $nama, $email, $hashed_password);
+            $insert_stmt->bind_param("sss", $nama_lengkap, $email, $hashed_password);
 
             if ($insert_stmt->execute()) {
                 echo "<script>alert('Pendaftaran berhasil! Silakan login.'); window.location.href='login.php';</script>";
