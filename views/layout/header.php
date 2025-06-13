@@ -34,15 +34,6 @@
           </div>
         </div>
 
-        <!-- Search + Buttons -->
-        <div class="hidden md:flex items-center space-x-4">
-          <div class="relative">
-            <div class="absolute right-3 top-2.5 text-gray-500">
-              <i class="ri-search-line text-lg"></i>
-            </div>
-          </div>
-        </div>
-
         <!-- Mobile menu toggle -->
         <div class="md:hidden">
           <button id="mobile-menu-button" class="text-white text-2xl">

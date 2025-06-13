@@ -33,18 +33,6 @@
           </div>
         </div>
 
-        <!-- Search + Buttons -->
-        <div class="hidden md:flex items-center space-x-4">
-          <div class="relative">
-            <input type="text" placeholder="Cari event..." class="py-2 pl-4 pr-10 rounded-full text-gray-800 w-64 focus:outline-none focus:ring-2 focus:ring-white" />
-            <div class="absolute right-3 top-2.5 text-gray-500">
-              <i class="ri-search-line text-lg"></i>
-            </div>
-          </div>
-          <button class="bg-white text-purple-700 font-bold py-2 px-6 rounded-full hover:bg-gray-100 transition">Masuk</button>
-          <button class="bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition">Daftar</button>
-        </div>
-
         <!-- Mobile menu toggle -->
         <div class="md:hidden">
           <button id="mobile-menu-button" class="text-white text-2xl">
