@@ -28,19 +28,21 @@
           <a href="#" class="text-2xl logo text-white">Eventify</a>
           <div class="hidden md:flex ml-10 space-x-6">
             <a href="../../body/index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
-            <a href="../../Pengguna/events/events.php" class="font-medium hover:text-gray-200 transition">Kategori Events</a>
+            <a href="../../Pengguna/events/events.php" class="font-medium hover:text-gray-200 transition">Events</a>
             <a href="#" class="font-medium hover:text-gray-200 transition">Tiket Saya</a>
-
           </div>
         </div>
 
         <!-- Search + Buttons -->
         <div class="hidden md:flex items-center space-x-4">
           <div class="relative">
+            <input type="text" placeholder="Cari event..." class="py-2 pl-4 pr-10 rounded-full text-gray-800 w-64 focus:outline-none focus:ring-2 focus:ring-white" />
             <div class="absolute right-3 top-2.5 text-gray-500">
               <i class="ri-search-line text-lg"></i>
             </div>
           </div>
+          <button class="bg-white text-purple-700 font-bold py-2 px-6 rounded-full hover:bg-gray-100 transition">Masuk</button>
+          <button class="bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition">Daftar</button>
         </div>
 
         <!-- Mobile menu toggle -->

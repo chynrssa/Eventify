@@ -21,15 +21,15 @@
 <div class="flex items-center">
 <a href="#" class="text-2xl font-['Pacifico'] text-white">Eventify</a>
 <div class="hidden md:flex ml-10 space-x-6">
-<a href="index.html" class="font-medium hover:text-gray-200 transition">Beranda</a>
-<a href="../Pengguna/events/events.php" class="font-medium hover:text-gray-200 transition">Events</a>
+<a href="index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
+<a href="../Pengguna/events/events.php" class="font-medium hover:text-gray-200 transition">Kategori Events</a>
 <a href="#" class="font-medium hover:text-gray-200 transition">Tiket Saya</a>
-<a href="#" class="font-medium hover:text-gray-200 transition">Tentang Kami</a>
+
 </div>
 </div>
 <div class="hidden md:flex items-center space-x-4">
 <div class="relative">
-<input type="text" placeholder="Cari event..." class="py-2 px-4 pr-10 rounded-full text-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-primary w-64">
+
 <div class="absolute right-3 top-2.5 w-5 h-5 flex items-center justify-center text-gray-500">
 <i class="ri-search-line"></i>
 </div>

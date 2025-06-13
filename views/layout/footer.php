@@ -11,9 +11,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
 
   <style>
-    body {
+    /* Flexbox agar footer sticky */
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       font-family: 'Inter', sans-serif;
+      background: #f9fafb;
+    }
+
+    main {
+      flex: 1; /* Biar main mengambil sisa tinggi layar */
+      padding: 20px;
     }
 
     footer {
@@ -105,6 +116,8 @@
   </style>
 </head>
 <body>
+
+
 
 <footer>
   <div class="footer-container">
