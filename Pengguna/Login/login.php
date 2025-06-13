@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eventify - Platform Tiket Event & Konser</title>
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
     <script>tailwind.config={theme:{extend:{colors:{primary:'#C930C1',secondary:'#8A2BE2'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-     <link rel="stylesheet" href="login.css" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+    <link rel="stylesheet" href="login.css" />
 </head>
 <body class="bg-white">
     <div class="auth-container flex flex-col md:flex-row">
@@ -45,7 +44,7 @@
                             </div>
                         </div>
                         
-                        <div class="mb-4">
+                        <div class="mb-6">
                             <div class="flex justify-between items-center mb-1">
                                 <label for="password" class="block text-sm font-medium text-gray-700">Kata Sandi</label>
                                 <a href="#" class="text-sm text-primary hover:text-primary/80">Lupa Kata Sandi?</a>
@@ -63,31 +62,8 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-center mb-6">
-                            <div class="flex items-center">
-                                <input type="checkbox" id="remember" class="hidden">
-                                <div id="customCheckbox" class="w-5 h-5 border border-gray-300 rounded flex items-center justify-center mr-2 cursor-pointer">
-                                    <i class="ri-check-line text-white text-sm hidden"></i>
-                                </div>
-                                <label for="remember" class="text-sm text-gray-700 cursor-pointer">Ingat Saya</label>
-                            </div>
-                        </div>
-                        
                         <button type="submit" class="w-full bg-primary text-white py-2.5 px-4 rounded-button font-medium hover:bg-primary/90 transition-colors duration-300 !rounded-button whitespace-nowrap">Masuk</button>
                     </form>
-                    
-                    <div class="divider my-6">atau</div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button class="social-btn flex items-center justify-center py-2.5 px-4 border border-gray-300 rounded-button whitespace-nowrap">
-                            <i class="ri-google-fill mr-2 text-lg"></i>
-                            <span>Google</span>
-                        </button>
-                        <button class="social-btn flex items-center justify-center py-2.5 px-4 border border-gray-300 rounded-button whitespace-nowrap">
-                            <i class="ri-facebook-fill mr-2 text-lg"></i>
-                            <span>Facebook</span>
-                        </button>
-                    </div>
                     
                     <div class="text-center mt-8">
                         <p class="text-gray-600">
@@ -97,10 +73,10 @@
                     </div>
                 </div>
                 
+                <!-- Form Register (tidak diubah) -->
                 <div id="registerForm" class="hidden transition-all duration-300">
                     <h2 class="text-2xl font-bold text-gray-900 mb-2">Daftar di Eventify</h2>
                     <p class="text-gray-600 mb-8">Buat akun untuk mengakses semua fitur</p>
-                    
                     <form>
                         <div class="mb-4">
                             <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
@@ -111,7 +87,6 @@
                                 <input type="text" id="fullName" class="form-input w-full pl-10 pr-3 py-2 border border-gray-300 rounded-button text-gray-900 focus:outline-none" placeholder="Nama lengkap Anda">
                             </div>
                         </div>
-                        
                         <div class="mb-4">
                             <label for="registerEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                             <div class="relative">
@@ -121,7 +96,6 @@
                                 <input type="email" id="registerEmail" class="form-input w-full pl-10 pr-3 py-2 border border-gray-300 rounded-button text-gray-900 focus:outline-none" placeholder="email@example.com">
                             </div>
                         </div>
-                        
                         <div class="mb-4">
                             <label for="registerPassword" class="block text-sm font-medium text-gray-700 mb-1">Kata Sandi</label>
                             <div class="relative">
@@ -129,14 +103,8 @@
                                     <i class="ri-lock-line text-gray-400"></i>
                                 </div>
                                 <input type="password" id="registerPassword" class="form-input w-full pl-10 pr-10 py-2 border border-gray-300 rounded-button text-gray-900 focus:outline-none" placeholder="Minimal 8 karakter">
-                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                    <button type="button" id="toggleRegisterPassword" class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                        <i class="ri-eye-line"></i>
-                                    </button>
-                                </div>
                             </div>
                         </div>
-                        
                         <div class="mb-6">
                             <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Kata Sandi</label>
                             <div class="relative">
@@ -144,30 +112,10 @@
                                     <i class="ri-lock-line text-gray-400"></i>
                                 </div>
                                 <input type="password" id="confirmPassword" class="form-input w-full pl-10 pr-10 py-2 border border-gray-300 rounded-button text-gray-900 focus:outline-none" placeholder="Konfirmasi kata sandi Anda">
-                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                    <button type="button" id="toggleConfirmPassword" class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                        <i class="ri-eye-line"></i>
-                                    </button>
-                                </div>
                             </div>
                         </div>
-                        
                         <button type="submit" class="w-full bg-primary text-white py-2.5 px-4 rounded-button font-medium hover:bg-primary/90 transition-colors duration-300 !rounded-button whitespace-nowrap">Daftar</button>
                     </form>
-                    
-                    <div class="divider my-6">atau</div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button class="social-btn flex items-center justify-center py-2.5 px-4 border border-gray-300 rounded-button whitespace-nowrap">
-                            <i class="ri-google-fill mr-2 text-lg"></i>
-                            <span>Google</span>
-                        </button>
-                        <button class="social-btn flex items-center justify-center py-2.5 px-4 border border-gray-300 rounded-button whitespace-nowrap">
-                            <i class="ri-facebook-fill mr-2 text-lg"></i>
-                            <span>Facebook</span>
-                        </button>
-                    </div>
-                    
                     <div class="text-center mt-8">
                         <p class="text-gray-600">
                             Sudah punya akun? 
@@ -178,8 +126,6 @@
             </div>
         </div>
     </div>
-
     <script src="login.js"></script>
-
 </body>
 </html>

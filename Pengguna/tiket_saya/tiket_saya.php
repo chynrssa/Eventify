@@ -1,11 +1,7 @@
 <?php
-// Asumsikan path ini sesuai dengan struktur proyek Anda
-// Sesuaikan jika header dan footer ada di direktori lain
 include '../../views/layout/header.php';
 
-// --- Simulasi Data Tiket dari Database ---
-// Nantinya, Anda akan mengganti bagian ini dengan query ke database
-// untuk mengambil tiket milik pengguna yang sedang login.
+
 $tiketData = [
     [
         'id_pesanan' => 'EVT12345',
@@ -16,7 +12,7 @@ $tiketData = [
         'gambar_url' => 'https://readdy.ai/api/search-image?query=A%20vibrant%20music%20concert%20with%20a%20popular%20band%20performing%20on%20stage%20with%20colorful%20lights%20and%20effects&width=600&height=400&seq=event1&orientation=landscape',
         'jumlah_tiket' => 2,
         'kategori' => 'VIP',
-        'status' => 'aktif' // 'aktif', 'digunakan', 'dibatalkan'
+        'status' => 'aktif'
     ],
     [
         'id_pesanan' => 'EVT67890',
@@ -41,16 +37,14 @@ $tiketData = [
         'status' => 'digunakan'
     ]
 ];
-// --- Akhir Simulasi Data ---
+
 
 ?>
 
-<!-- Main Content - Bagian Tiket Saya -->
 <main class="pt-24 pb-16">
     <div class="container mx-auto px-4">
         <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Tiket Saya</h1>
 
-        <!-- Navigasi Tab -->
         <div class="mb-8">
             <div class="flex border-b border-gray-200">
                 <button data-tab="aktif" class="tab-button active py-3 px-6 -mb-px text-gray-600 hover:text-primary focus:outline-none">
@@ -65,16 +59,13 @@ $tiketData = [
             </div>
         </div>
 
-        <!-- Konten Tab -->
         <div>
-            <!-- Tiket Aktif -->
             <div id="tab-content-aktif" class="space-y-6">
                 <?php
                 $adaTiketAktif = false;
                 foreach ($tiketData as $tiket) {
                     if ($tiket['status'] == 'aktif') {
                         $adaTiketAktif = true;
-                        // Tampilkan card tiket
                         echo '
                         <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
                             <div class="flex flex-col md:flex-row">
@@ -114,14 +105,12 @@ $tiketData = [
                 ?>
             </div>
 
-            <!-- Tiket Telah Digunakan -->
             <div id="tab-content-digunakan" class="hidden space-y-6">
                 <?php
                 $adaTiketDigunakan = false;
                 foreach ($tiketData as $tiket) {
                     if ($tiket['status'] == 'digunakan') {
                         $adaTiketDigunakan = true;
-                        // Tampilkan card tiket
                         echo '
                         <div class="bg-white rounded-xl shadow-md overflow-hidden opacity-70">
                             <div class="flex flex-col md:flex-row">
@@ -154,7 +143,6 @@ $tiketData = [
                 ?>
             </div>
             
-            <!-- Tiket Dibatalkan -->
             <div id="tab-content-dibatalkan" class="hidden">
                  <div class="bg-white rounded-xl shadow-md p-8 text-center">
                     <i class="ri-close-circle-line text-5xl text-gray-400 mb-4"></i>
@@ -166,10 +154,9 @@ $tiketData = [
     </div>
 </main>
 
-<!-- Custom CSS dan JS untuk Tab -->
 <style>
     .tab-button.active {
-        background-color: #6200EA; /* primary color */
+        background-color: #6200EA;
         color: white;
         font-weight: 600;
         border-radius: 6px 6px 0 0;
@@ -190,18 +177,14 @@ $tiketData = [
 
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                // Nonaktifkan semua tab
                 tabs.forEach(item => item.classList.remove('active'));
                 
-                // Sembunyikan semua konten
                 Object.values(tabContents).forEach(content => {
                     if(content) content.classList.add('hidden');
                 });
 
-                // Aktifkan tab yang diklik
                 tab.classList.add('active');
                 
-                // Tampilkan konten yang sesuai
                 const activeTabContent = tabContents[tab.dataset.tab];
                 if (activeTabContent) {
                     activeTabContent.classList.remove('hidden');
@@ -212,6 +195,5 @@ $tiketData = [
 </script>
 
 <?php
-// Asumsikan path ini sesuai dengan struktur proyek Anda
 include '../../views/layout/footer.php';
 ?>
