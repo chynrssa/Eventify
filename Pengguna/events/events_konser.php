@@ -22,7 +22,7 @@
 
     <!-- Event 2 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f" alt="Festival Musik Indie Nusantara" class="w-full h-48 object-cover">
+      <img src="../../image/FestivalMusikIndieNusantara.png" alt="Festival Musik Indie Nusantara" class="w-full h-48 object-cover">
       <div class="p-4">
         <h3 class="font-bold text-lg text-gray-800">Festival Musik Indie Nusantara</h3>
         <p class="text-gray-600 text-sm">20 Juli 2025 | Lapangan Gasibu Bandung</p>

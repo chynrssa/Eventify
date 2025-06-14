@@ -47,41 +47,41 @@
     <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Kategori Populer</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events_konser.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-purple-100 flex items-center justify-center mb-3">
                     <i class="ri-music-line text-3xl text-primary"></i>
                 </div>
                 <span class="font-medium">Konser</span>
             </a>
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events_seminar.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mb-3">
                     <i class="ri-presentation-line text-3xl text-blue-600"></i>
                 </div>
                 <span class="font-medium">Seminar</span>
             </a>
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events_workshop.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-3">
                     <i class="ri-tools-line text-3xl text-green-600"></i>
                 </div>
                 <span class="font-medium">Workshop</span>
             </a>
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events_pameran.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-yellow-100 flex items-center justify-center mb-3">
                     <i class="ri-gallery-line text-3xl text-yellow-600"></i>
                 </div>
                 <span class="font-medium">Pameran</span>
             </a>
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events_olahraga.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center mb-3">
                     <i class="ri-basketball-line text-3xl text-red-600"></i>
                 </div>
                 <span class="font-medium">Olahraga</span>
             </a>
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-pink-100 flex items-center justify-center mb-3">
                     <i class="ri-palette-line text-3xl text-pink-600"></i>
                 </div>
-                <span class="font-medium">Seni</span>
+                <span class="font-medium">Lainnya</span>
             </a>
         </div>
     </div>
@@ -91,76 +91,83 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-10">
             <h2 class="text-3xl font-bold mb-4 md:mb-0">Event Unggulan</h2>
-            <div class="flex space-x-2 bg-white p-1 rounded-full shadow-sm">
-                <button class="bg-primary text-white py-2 px-6 rounded-full whitespace-nowrap">Semua</button>
-                <button class="text-gray-700 py-2 px-6 rounded-full whitespace-nowrap hover:bg-gray-100">Konser</button>
-                <button class="text-gray-700 py-2 px-6 rounded-full whitespace-nowrap hover:bg-gray-100">Seminar</button>
-                <button class="text-gray-700 py-2 px-6 rounded-full whitespace-nowrap hover:bg-gray-100">Workshop</button>
-                <button class="text-gray-700 py-2 px-6 rounded-full whitespace-nowrap hover:bg-gray-100">Pameran</button>
-            </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="event-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
                 <div class="relative h-48">
-                    <img src="https://readdy.ai/api/search-image?query=a%20vibrant%20music%20concert&width=600&height=400&seq=1" alt="Konser Musik" class="w-full h-full object-cover object-top">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Konser Musik" class="w-full h-full object-cover object-top">
                     <div class="absolute top-4 right-4 bg-primary text-white text-sm font-semibold py-1 px-3 rounded-full">Konser</div>
                 </div>
                 <div class="p-5">
                     <div class="flex items-center text-gray-500 text-sm mb-2">
-                        <i class="ri-calendar-line mr-2"></i><span>9 Juni 2025 • 19:00 WIB</span>
+                        <i class="ri-calendar-line mr-2"></i><span>5 Agustus 2025 • 19:00 WIB</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Dewa 19 Reunion Concert</h3>
+                    <h3 class="text-xl font-bold mb-2">Live Concert K-Pop Stars</h3>
                     <div class="flex items-center text-gray-500 text-sm mb-3">
                         <i class="ri-map-pin-line mr-2"></i><span>Gelora Bung Karno, Jakarta</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <div class="text-primary font-bold">Rp 750.000</div>
-                        <button class="bg-primary text-white py-2 px-4 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">Beli Tiket</button>
+                        <a href="Pengguna/pemesanan_pembayaran/pemesanan.php?event=Live+Concert+K-Pop+Stars+2025"
+                        class="inline-block bg-primary text-white py-2 px-4 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">
+                            Beli Tiket
+                        </a>
                     </div>
+
                 </div>
             </div>
             <div class="event-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
                 <div class="relative h-48">
-                    <img src="image/seminar_hukumcyber.jpg" alt="Seminar Bisnis" class="w-full h-full object-cover object-top">
+                    <img src="image/seminar_hukumcyber.png" alt="Seminar Bisnis" class="w-full h-full object-cover object-top">
                     <div class="absolute top-4 right-4 bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full">Seminar</div>
                 </div>
                 <div class="p-5">
                     <div class="flex items-center text-gray-500 text-sm mb-2">
-                        <i class="ri-calendar-line mr-2"></i><span>15 Juni 2025 • 09:00 WIB</span>
+                        <i class="ri-calendar-line mr-2"></i><span>15 November 2025 • 09:00 WIB</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Seminar Keamanan Siber</h3>
+                    <h3 class="text-xl font-bold mb-2">Seminar Hukum Cyber</h3>
                     <div class="flex items-center text-gray-500 text-sm mb-3">
-                        <i class="ri-map-pin-line mr-2"></i><span>Hotel Mulia, Surabaya</span>
+                        <i class="ri-map-pin-line mr-2"></i><span>Hotel Mulia, Jakarta</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <div class="text-primary font-bold">Rp 400.000</div>
-                        <button class="bg-primary text-white py-2 px-4 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">Beli Tiket</button>
+                        <a href="Pengguna/pemesanan_pembayaran/pemesanan.php?event=Seminar+Hukum+Cyber"
+                        class="inline-block bg-primary text-white py-2 px-4 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">
+                            Beli Tiket
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="event-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
                 <div class="relative h-48">
-                    <img src="image/workshop.jpg" alt="Workshop" class="w-full h-full object-cover object-top">
+                    <img src="https://web.faperta.ugm.ac.id/wp-content/uploads/sites/19/2024/11/Artikel-Public-Speaking-Workshop_fix3.jpeg" alt="Workshop" class="w-full h-full object-cover object-top">
                     <div class="absolute top-4 right-4 bg-green-600 text-white text-sm font-semibold py-1 px-3 rounded-full">Workshop</div>
                 </div>
                 <div class="p-5">
                     <div class="flex items-center text-gray-500 text-sm mb-2">
-                        <i class="ri-calendar-line mr-2"></i><span>20 Juni 2025 • 13:00 WIB</span>
+                        <i class="ri-calendar-line mr-2"></i><span>12 - 13 Oktober 2025 • 13:00 WIB</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Workshop Public Speaking</h3>
+                    <h3 class="text-xl font-bold mb-2">Workshop Public Speaking Profesional</h3>
                     <div class="flex items-center text-gray-500 text-sm mb-3">
-                        <i class="ri-map-pin-line mr-2"></i><span>Pakuwon Mall, Surabaya</span>
+                        <i class="ri-map-pin-line mr-2"></i><span>Hotel Santika, Yogyakarta</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <div class="text-primary font-bold">Rp 180.000</div>
-                        <button class="bg-primary text-white py-2 px-4 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">Beli Tiket</button>
+                        <a href="Pengguna/pemesanan_pembayaran/pemesanan.php?event=Pelatihan+Public+Speaking+Profesional"
+                        class="inline-block bg-primary text-white py-2 px-4 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">
+                            Beli Tiket
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-center mt-10">
-            <button class="bg-white border border-primary text-primary font-semibold py-3 px-8 rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition">Lihat Semua Event</button>
-        </div>
+    <a href="Pengguna/events/events.php"
+       class="inline-block bg-white border border-primary text-primary font-semibold py-3 px-8 rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition">
+        Lihat Semua Event
+    </a>
+</div>
+
     </div>
 </section>
 

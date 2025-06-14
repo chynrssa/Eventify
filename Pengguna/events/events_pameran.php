@@ -33,7 +33,7 @@
 
     <!-- Event 3 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904" alt="Pameran Fotografi Dunia" class="w-full h-48 object-cover">
+      <img src="../../image/fotografidunia.png" alt="Pameran Fotografi Dunia" class="w-full h-48 object-cover">
       <div class="p-4">
         <h3 class="font-bold text-lg text-gray-800">Pameran Fotografi Dunia</h3>
         <p class="text-gray-600 text-sm">5 - 7 September 2025 | Grand Indonesia, Jakarta</p>
