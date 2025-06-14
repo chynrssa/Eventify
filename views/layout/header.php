@@ -25,7 +25,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="flex items-center">
                 <a href="/eventify/body/index.php" class="text-2xl font-['Pacifico'] text-white">Eventify</a>
                 <div class="hidden md:flex ml-10 space-x-6">
-                    <a href="/eventify/body/index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
+                    <a href="/eventify/index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
                     <a href="/eventify/Pengguna/events/events.php" class="font-medium hover:text-gray-200 transition">Events</a>
                     <a href="/eventify/Pengguna/tiket_saya/tiket_saya.php" class="font-medium hover:text-gray-200 transition">Tiket Saya</a>
                 </div>
