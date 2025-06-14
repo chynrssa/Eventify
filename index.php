@@ -47,31 +47,31 @@
     <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Kategori Populer</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events_konser.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-purple-100 flex items-center justify-center mb-3">
                     <i class="ri-music-line text-3xl text-primary"></i>
                 </div>
                 <span class="font-medium">Konser</span>
             </a>
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events_Seminar.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mb-3">
                     <i class="ri-presentation-line text-3xl text-blue-600"></i>
                 </div>
                 <span class="font-medium">Seminar</span>
             </a>
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events_workshop.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-3">
                     <i class="ri-tools-line text-3xl text-green-600"></i>
                 </div>
                 <span class="font-medium">Workshop</span>
             </a>
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events_pameran.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-yellow-100 flex items-center justify-center mb-3">
                     <i class="ri-gallery-line text-3xl text-yellow-600"></i>
                 </div>
                 <span class="font-medium">Pameran</span>
             </a>
-            <a href="#" class="category-item flex flex-col items-center transition duration-300">
+            <a href="Pengguna/events/events_olahraga.php" class="category-item flex flex-col items-center transition duration-300">
                 <div class="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center mb-3">
                     <i class="ri-basketball-line text-3xl text-red-600"></i>
                 </div>
@@ -102,7 +102,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="event-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
                 <div class="relative h-48">
-                    <img src="image/FestivalMusikIndieNusantara.png" alt="Konser Musik" class="w-full h-full object-cover object-top">
+                    <img src="https://www.mnctrijaya.com/uploads/news/Dewa%2001.png" alt="Konser Musik" class="w-full h-full object-cover object-top">
                     <div class="absolute top-4 right-4 bg-primary text-white text-sm font-semibold py-1 px-3 rounded-full">Konser</div>
                 </div>
                 <div class="p-5">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <div class="text-primary font-bold">Rp 750.000</div>
-                        <button class="bg-primary text-white py-2 px-4 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">Beli Tiket</button>
+                        <a href="Pengguna/pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Dewa 19 Reunion Concert'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <div class="text-primary font-bold">Rp 400.000</div>
-                        <button class="bg-primary text-white py-2 px-4 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">Beli Tiket</button>
+                        <a href="Pengguna/pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Seminar Hukum Cyber'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
                     </div>
                 </div>
             </div>
@@ -153,13 +153,16 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <div class="text-primary font-bold">Rp 180.000</div>
-                        <button class="bg-primary text-white py-2 px-4 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">Beli Tiket</button>
+                        <a href="Pengguna/pemesanan_pembayaran/pemesanan.php?event=<?php echo urlencode('Workshop Public Speaking Profesional'); ?>" class="mt-2 bg-blue-600 text-white py-1 px-3 rounded-md text-sm hover:bg-blue-700">Pesan Tiket</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-center mt-10">
-            <button class="bg-white border border-primary text-primary font-semibold py-3 px-8 rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition">Lihat Semua Event</button>
+           <a href="Pengguna/events/events.php" class="bg-white border border-primary text-primary font-semibold py-3 px-8 rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition">
+  Lihat Semua Event
+</a>
+
         </div>
     </div>
 </section>
