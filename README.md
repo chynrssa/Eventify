@@ -1,4 +1,10 @@
 # 🎟️ EVENTIFY (Event Organizer & Ticketing Web)
+## KELOMPOK 7
+Nama Anggota:
+1. Ghaisan Wildan Bathsya 2317051054
+2. Cahya Nerissa 2317051032
+3. Fernando Ramadhani 2317051060
+
 Proyek Eventify merupakan sistem penjualan tiket event online sederhana yang dibangun menggunakan PHP dan MySQL. Tujuannya adalah untuk mengelola transaksi penjualan tiket secara aman dan terstruktur, dengan memanfaatkan stored procedure, trigger, transaction, dan stored function untuk memastikan konsistensi data. Sistem ini juga dilengkapi mekanisme backup otomatis untuk menjaga keamanan data.
 
 ![Beranda](/image/eventify.png)
@@ -125,8 +131,34 @@ Function ini bisa dipanggil dari aplikasi atau dari procedure lain, sehingga log
 
 
 ### 🔄 Backup Otomatis
+Skrip backup ini menjalankan proses pencadangan database Eventify secara otomatis menggunakan utilitas mysqldump dari direktori bin MySQL pada instalasi XAMPP (C:\xampp\mysql\bin), di mana skrip mengautentikasi ke server MySQL menggunakan akun root dengan password kosong sesuai konfigurasi default XAMPP, kemudian melakukan dump lengkap database eventify termasuk seluruh stored procedure, function, dan event scheduler melalui parameter --routines --events, menyimpan hasil backup sebagai file SQL bernama eventify_backup.sql di direktori khusus C:\Users\user\Downloads\backup_database, dan akhirnya mencatat status operasi (berhasil/gagal) beserta timestamp eksekusi dalam file log mysql_backup_log.txt yang berada di lokasi yang sama dengan file backup, sehingga membentuk sistem pencadangan sederhana yang mempertahankan seluruh struktur database beserta komponen programatiknya seperti prosedur 'sp_buat_transaksi_promo' dan function 'hitung_total_harga' dalam satu paket file yang siap direstore kapan pun diperlukan.
 
+```bat
+@echo off
+rem path to mysql server bin folder
+cd "C:\xampp\mysql\bin"
 
+rem credentials to connect to mysql server
+set mysql_user=root
+set mysql_password=
+
+rem database to backup
+set db_name=eventify
+
+rem backup file name generation
+set backup_path=C:\Users\user\Downloads\backup_database
+set backup_name=%db_name%_backup
+
+rem backup creation
+mysqldump --user=%mysql_user% --password=%mysql_password% --routines --events %db_name% > "%backup_path%\%backup_name%.sql"
+
+if %ERRORLEVEL% neq 0 (
+    echo Backup failed: error during dump creation >> "%backup_path%\mysql_backup_log.txt"
+) else (
+    echo Backup successful >> "%backup_path%\mysql_backup_log.txt"
+)
+
+```
 
 ### 🧩 Relevansi Proyek dengan Pemrosesan Data Terdistribusi
 Sistem eventify dirancang dengan prinsip-prinsip pemrosesan data terdistribusi:
