@@ -23,7 +23,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <nav class="gradient-bg text-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center">
-                <a href="/eventify/body/index.php" class="text-2xl font-['Pacifico'] text-white">Eventify</a>
+                <a href="/eventify/index.php" class="text-2xl font-['Pacifico'] text-white">Eventify</a>
                 <div class="hidden md:flex ml-10 space-x-6">
                     <a href="/eventify/index.php" class="font-medium hover:text-gray-200 transition">Beranda</a>
                     <a href="/eventify/Pengguna/events/events.php" class="font-medium hover:text-gray-200 transition">Events</a>
@@ -54,7 +54,7 @@ if (session_status() == PHP_SESSION_NONE) {
         
         <div id="mobile-menu" class="md:hidden hidden bg-white text-gray-800 shadow-lg absolute w-full">
             <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-                <a href="/eventify/body/index.php" class="font-medium py-2 hover:text-primary transition">Beranda</a>
+                <a href="/eventify/index.php" class="font-medium py-2 hover:text-primary transition">Beranda</a>
                 <a href="/eventify/Pengguna/events/events.php" class="font-medium py-2 hover:text-primary transition">Events</a>
                 <a href="/eventify/Pengguna/tiket_saya/tiket_saya.php" class="font-medium py-2 hover:text-primary transition">Tiket Saya</a>
                 <div class="flex space-x-3 py-2 border-t mt-2">
