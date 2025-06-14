@@ -102,7 +102,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="event-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
                 <div class="relative h-48">
-                    <img src="https://readdy.ai/api/search-image?query=a%20vibrant%20music%20concert&width=600&height=400&seq=1" alt="Konser Musik" class="w-full h-full object-cover object-top">
+                    <img src="image/FestivalMusikIndieNusantara.png" alt="Konser Musik" class="w-full h-full object-cover object-top">
                     <div class="absolute top-4 right-4 bg-primary text-white text-sm font-semibold py-1 px-3 rounded-full">Konser</div>
                 </div>
                 <div class="p-5">
