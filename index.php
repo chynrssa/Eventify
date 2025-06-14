@@ -121,7 +121,7 @@
             </div>
             <div class="event-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
                 <div class="relative h-48">
-                    <img src="image/seminar_hukumcyber.jpg" alt="Seminar Bisnis" class="w-full h-full object-cover object-top">
+                    <img src="image/seminar_hukumcyber.png" alt="Seminar Bisnis" class="w-full h-full object-cover object-top">
                     <div class="absolute top-4 right-4 bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full">Seminar</div>
                 </div>
                 <div class="p-5">
@@ -140,7 +140,7 @@
             </div>
             <div class="event-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
                 <div class="relative h-48">
-                    <img src="image/workshop.jpg" alt="Workshop" class="w-full h-full object-cover object-top">
+                    <img src="image/workshop.png" alt="Workshop" class="w-full h-full object-cover object-top">
                     <div class="absolute top-4 right-4 bg-green-600 text-white text-sm font-semibold py-1 px-3 rounded-full">Workshop</div>
                 </div>
                 <div class="p-5">
